@@ -5,6 +5,14 @@
 // Get input file
 int scheduler::getInputFile(int argc, char* argv[]) {
 
+    // Reinitialize after error
+    id.clear();
+    id_ap.clear();
+    execTime.clear();
+    execTime_ap.clear();
+    period.clear();
+    release_ap.clear();
+
     std::string inputFile;
     t.println("Drag and drop or enter the path to the input file.");
 
@@ -353,10 +361,10 @@ int scheduler::printSchedule(int argc, char* argv[]) {
         t.println("Release time: ");
         t.print(release_ap[response_id_RMS_ap[i]]);
         t.println("Completed time: ");
-        t.print(response_RMS_ap[response_id_RMS_ap[i]]);
+        t.print(response_RMS_ap[i]);
         t.println("Response time: ");
-        t.print(response_RMS_ap[response_id_RMS_ap[i]] - release_ap[response_id_RMS_ap[i]]);
-        average_response += (response_RMS_ap[response_id_RMS_ap[i]] - release_ap[response_id_RMS_ap[i]]) / response_RMS_ap.size();
+        t.print(response_RMS_ap[i] - release_ap[response_id_RMS_ap[i]]);
+        average_response += (response_RMS_ap[i] - release_ap[response_id_RMS_ap[i]]) / response_RMS_ap.size();
     }
 
     t.println();
@@ -381,10 +389,10 @@ int scheduler::printSchedule(int argc, char* argv[]) {
         t.println("Release time: ");
         t.print(release_ap[response_id_EDF_ap[i]]);
         t.println("Completed time: ");
-        t.print(response_EDF_ap[response_id_EDF_ap[i]]);
+        t.print(response_EDF_ap[i]);
         t.println("Response time: ");
-        t.print(response_EDF_ap[response_id_EDF_ap[i]] - release_ap[response_id_EDF_ap[i]]);
-        average_response += (response_EDF_ap[response_id_EDF_ap[i]] - release_ap[response_id_EDF_ap[i]]) / response_EDF_ap.size();
+        t.print(response_EDF_ap[i] - release_ap[response_id_EDF_ap[i]]);
+        average_response += (response_EDF_ap[i] - release_ap[response_id_EDF_ap[i]]) / response_EDF_ap.size();
     }
 
     t.println();
